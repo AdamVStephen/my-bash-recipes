@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set x
+set -x
 echo "Download, configure, compile a basic raspberry pi image using yocto"
 echo "You need plenty of disk space for this."
 echo "As of 2020-05-22 choosing to use the dunfell branch 3.1 April 2020"
@@ -7,12 +7,12 @@ echo "We assume the system has been configured in terms of prerequisite software
 echo "my-bash-recipes intentionally excludes package installation and setup"
 ###
 t0=$(date "+%s")
-#mkdir -p yocto-rpi-basic-dunfell && cd yocto-rpi-basic-dunfell
-#git clone git://git.yoctoproject.org/poky && cd poky
+mkdir -p yocto-rpi-basic-dunfell && cd yocto-rpi-basic-dunfell
+git clone git://git.yoctoproject.org/poky && cd poky
 export POKYTOPLEVEL=$(realpath $PWD)
-#git checkout dunfell
-#echo "Pull down the raspberry pi layer"
-#git clone git://git.yoctoproject.org/meta-raspberrypi && cd meta-raspberrypi && git checkout dunfell & cd ../
+git checkout dunfell
+echo "Pull down the raspberry pi layer"
+git clone git://git.yoctoproject.org/meta-raspberrypi && cd meta-raspberrypi && git checkout dunfell && cd ../
 echo "Create a build directory"
 source oe-init-build-env rpi-dunfell-build 
 echo "Update the default build target"
